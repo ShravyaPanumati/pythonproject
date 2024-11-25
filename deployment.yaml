@@ -27,12 +27,10 @@ spec:
             - name: service-account-volume
               mountPath: /app/service-account-file.json
               subPath: service-account-file.json
-
       volumes:
         - name: service-account-volume
-          configMap:
-            name: service-account-config
-
+          secret:  # Use a Secret to handle sensitive data
+            secretName: service-account-secret
 ---
 apiVersion: v1
 kind: Service
@@ -47,5 +45,3 @@ spec:
       port: 80
       targetPort: 5000
   type: LoadBalancer  # Exposes the service to the internet via a load balancer
-
-
