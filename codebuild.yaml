@@ -1,5 +1,5 @@
 steps:
-  # Step 1: Build Docker image
+  # Step 1: Build Docker images
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/strategic-reef-435523-j1/myapp:$SHORT_SHA', '.']
 
