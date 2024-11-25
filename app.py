@@ -56,7 +56,7 @@ def insert_values():
     cursor.close()
     conn.close()
 
-    return jsonify({'message': 'Values inserted successfully'}), 200
+    return jsonify({'message': 'Values are inserted successfully'}), 200
 
 @app.route('/')
 def index():
