@@ -15,4 +15,5 @@ steps:
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
 # Specify the logs bucket to store build logs
-logsBucket: 'gs://todo-app-build-logs'
+logsBucket: 'gs://todo-app-build-logs-strategic-reef-435523'
+
