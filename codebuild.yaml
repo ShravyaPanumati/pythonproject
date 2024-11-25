@@ -15,7 +15,6 @@ steps:
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
 options:
-  # Use the default regional user-owned bucket for build logs
-  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+  logging: CLOUD_LOGGING_ONLY # Store logs in Google Cloud Logging (no bucket required)
 
 timeout: '1200s'
