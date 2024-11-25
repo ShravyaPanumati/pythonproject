@@ -10,7 +10,7 @@ steps:
       - 'set'
       - 'image'
       - 'deployment/myapp-deployment'
-      - 'ica4-frontend=gcr.io/myfirstapp-72240/ica4-frontend:$SHORT_SHA'
+      - 'myapp=gcr.io/strategic-reef-435523-j1/myapp:$SHORT_SHA'
       - '--namespace=myapp'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
