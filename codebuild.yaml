@@ -1,7 +1,7 @@
 steps:
   # Step 1: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'gcr.io/strategic-reef-435523-j1/myapp:$SHORT_SHA', '.' ]
+    args: ['build', '-t', 'gcr.io/strategic-reef-435523-j1/myapp:$SHORT_SHA', '.']
   
   # Step 2: Push Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -14,6 +14,8 @@ steps:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
-# Specify the logs bucket to store build logs
-logsBucket: 'gs://todo-app-build-logs-strategic-reef-435523'
+options:
+  # Use the default regional user-owned bucket for build logs
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 
+timeout: '1200s'
