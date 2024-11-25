@@ -1,0 +1,4 @@
+Flask
+pyodbc
+flask-cors
+google-cloud-storage

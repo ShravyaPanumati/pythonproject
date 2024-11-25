@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Values</title>
+    <script>
+        function insertValues() {
+            // Get values from input fields
+            const value1 = document.getElementById('value1').value;
+            const value2 = document.getElementById('value2').value;
+
+            // Validate input
+            if (!value1 || !value2) {
+                alert('Please fill both values!');
+                return;
+            }
+
+            // Send data to the backend using Fetch API
+            fetch('http://127.0.0.1:5000/insert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value1: value1,
+                    value2: value2
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert('Values inserted successfully!');
+                    document.getElementById('value1').value = '';
+                    document.getElementById('value2').value = '';
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Insert Two Values</h1>
+
+    <div>
+        <label for="value1">Value 1: </label>
+        <input type="text" id="value1" name="value1" required>
+    </div>
+    <div>
+        <label for="value2">Value 2: </label>
+        <input type="text" id="value2" name="value2" required>
+    </div>
+    <button onclick="insertValues()">Submit</button>
+</body>
+</html>
