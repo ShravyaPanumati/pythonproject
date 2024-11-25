@@ -13,6 +13,7 @@ steps:
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
     - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}'
+    
 images:
   - 'gcr.io/strategic-reef-435523-j1/myapp:latest'  # Use 'latest' tag
 substitutions:
