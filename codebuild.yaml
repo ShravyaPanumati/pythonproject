@@ -1,5 +1,5 @@
 steps:
-  # Step 1: Build Docker images
+  # Step 1: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/strategic-reef-435523-j1/myapp:$SHORT_SHA', '.']
 
@@ -25,6 +25,6 @@ steps:
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
 options:
-  logging: GCS_ONLY
-  logsBucket: gs://todo-app-build-logs-strategic-reef-435523
+  logging: CLOUD_LOGGING_ONLY  # Store logs in Google Cloud Logging (no bucket required)
 
+timeout: '1200s'
