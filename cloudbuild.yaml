@@ -1,4 +1,3 @@
-
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'strategic-reef-435523-j1/myapp:$SHORT_SHA', '.']
