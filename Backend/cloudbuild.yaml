@@ -1,0 +1,23 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'strategic-reef-435523-j1/myapp:$SHORT_SHA', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/strategic-reef-435523-j1/myapp:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+    - 'set'
+    - 'image'
+    - 'deployment/myapp-deployment'
+    - 'myapp=gcr.io/strategic-reef-435523-j1/myapp:$SHORT_SHA'
+    - '--namespace=myapp'
+  env:
+    - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}'
+images:
+  - 'gcr.io/strategic-reef-435523-j1/myapp:$SHORT_SHA'
+substitutions:
+  _ZONE: 'us-central1-a'
+  _CLUSTER_NAME: 'cluster-1'
+options:
+  logging: GCS_ONLY
+logsBucket: gs://todo-app-build-logs-strategic-reef-435523
