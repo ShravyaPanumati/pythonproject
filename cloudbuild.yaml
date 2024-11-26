@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'strategic-reef-435523-j1/myapp:latest', '.']
+  args: ['build', '-t', 'gcr.io/strategic-reef-435523-j1/myapp:latest', '-f', 'Backend/Dockerfile', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/strategic-reef-435523-j1/myapp:latest']
 - name: 'gcr.io/cloud-builders/kubectl'
