@@ -9,7 +9,7 @@ steps:
     - 'image'
     - 'deployment/frontend-deployment'
     - 'myapp=gcr.io/strategic-reef-435523-j1/frontend:$SHORT_SHA'
-    - '--namespace=frontend'
+    - '--namespace=myapp'
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
     - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}'
