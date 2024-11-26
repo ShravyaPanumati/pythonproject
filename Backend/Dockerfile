@@ -27,7 +27,6 @@ WORKDIR /app
 ENV GOOGLE_APPLICATION_CREDENTIALS=/app/service-account-file.json
 
 #COPY strategic-reef-435523-j1-a4b9098b8adf.json /app/service-account-file.json
-
 #COPY /path/to/your/service-account-file.json /app/service-account-file.json
 # Expose the port that Flask runs on
 EXPOSE 5000
