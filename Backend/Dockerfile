@@ -19,13 +19,17 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
-COPY . /app
+COPY .. /app
 
 WORKDIR /app
 
 # Set environment variables for the application
 ENV GOOGLE_APPLICATION_CREDENTIALS=/app/service-account-file.json
+<<<<<<< Updated upstream:Dockerfile
 #COPY strategic-reef-435523-j1-a4b9098b8adf.json /app/service-account-file.json
+=======
+COPY ../strategic-reef-435523-j1-a4b9098b8adf.json /app/service-account-file.json
+>>>>>>> Stashed changes:Backend/Dockerfile
 #COPY /path/to/your/service-account-file.json /app/service-account-file.json
 # Expose the port that Flask runs on
 EXPOSE 5000

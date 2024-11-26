@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  namespace: myapp
+  labels:
+    app: myapp
+spec:
+  replicas: 2  # You can adjust the number of replicas
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: gcr.io/strategic-reef-435523-j1/myapp:v1  # The image name, will be updated by Cloud Build
+          ports:
+            - containerPort: 5000
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /app/service-account-file.json
+          volumeMounts:
+            - name: service-account-volume
+              mountPath: /app/service-account-file.json
+              subPath: service-account-file.json
+      volumes:
+        - name: service-account-volume
+          secret:  # Use a Secret to handle sensitive data
+            secretName: service-account-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+  namespace: myapp
+spec:
+  selector:
+    app: myapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer  # Exposes the service to the internet via a load balancer
