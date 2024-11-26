@@ -10,6 +10,17 @@ steps:
     - 'deployment/myapp-deployment'
     - 'myapp=gcr.io/strategic-reef-435523-j1/myapp:latest'
     - '--namespace=myapp'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'strategic-reef-435523-j1/frontend:$SHORT_SHA', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/strategic-reef-435523-j1/frontend:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+    - 'set'
+    - 'image'
+    - 'deployment/frontend-deployment'
+    - 'myapp=gcr.io/strategic-reef-435523-j1/frontend:$SHORT_SHA'
+    - '--namespace=frontend'
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
     - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}'
